@@ -6,18 +6,18 @@
   width: min(30rem, 100%);
   margin-inline: auto;
   position: relative;
-  --grad: hsl(0 0% 100% / .25), hsl(0 0% 100% / .5) 25%, hsl(0 0% 0% / .5) 90%;
+  --grad: hsl(0 0% 100% / .25), hsl(0 0% 100% / .5) 25%, hsl(0 0% 0% / .5);
 
   &::before,
   &::after {
     content: "";
     position: absolute;
-    width: 15px; /* змінив ширину, оскільки в оригіналі використовується 5cqi, що може бути помилкою */
+    width: 15px;
     background-color: orange;
     background-image: linear-gradient(90deg, var(--grad));
     height: 100%;
     top: 0;
-    border-radius: 5px; /* змінив радіус, оскільки в оригіналі використовується 5cqi, що може бути помилкою */
+    border-radius: 5px;
     z-index: 1;
   }
 
@@ -32,22 +32,22 @@
   > time {
     width: 100%;
     text-align: center;
-    font-size: 100px; /* змінив розмір, оскільки в оригіналі використовується 20cqi, що може бути помилкою */
+    font-size: 100px;
     color: rgb(71, 212, 255);
     font-family: system-ui, sans-serif;
     font-weight: 700;
-    z-index: 1; /* додав зіndex для переконання в тому, що текст вище за фон */
+    z-index: 1;
   }
 
   > [data-beads] {
     position: relative;
     display: flex;
     justify-content: flex-end;
-    margin-inline: 5px; /* змінив відстань, оскільки в оригіналі використовується 5cqi, що може бути помилкою */
-    margin-block: 1px; /* змінив відстань, оскільки в оригіналі використовується 1cqi, що може бути помилкою */
+    margin-inline: 5px;
+    margin-block: 1px;
 
     &:first-of-type {
-      margin-top: 10px; /* змінив відстань, оскільки в оригіналі використовується 10cqi, що може бути помилкою */
+      margin-top: 10px;
     }
 
     &::before {
@@ -75,6 +75,37 @@
       }
     }
   }
+
+  /* Додайте це для екранів з шириною менше 600 пікселів */
+  @media only screen and (max-width: 600px) {
+    > time {
+      font-size: 16px;
+    }
+  }
+
+ /* Додайте це для екранів з шириною менше 470 пікселів */
+@media only screen and (max-width: 470px) {
+  .abaclock {
+    width: 300px;
+    padding: 0 10px; /* Додайте внутрішній відступ для запобігання зміщенню правої панелі */
+  }
+  
+  .abaclock > [data-beads] {
+    margin-inline: 0;
+    margin-block: 10px;
+  }
+
+  .abaclock > time {
+    font-size: 12px;
+  }
+}
+
+  /* Додайте це для екранів з шириною менше 300 пікселів */
+  @media only screen and (max-width: 300px) {
+    > time {
+      font-size: 14px;
+    }
+  }
 }
 
 *,
@@ -89,7 +120,7 @@ body {
   display: grid;
   align-items: center;
   min-height: 100vh;
-  overflow: hidden; /* додав для уникнення відображення зайвого контенту, який виходить за межі сторінки */
+  overflow: hidden;
 }
 
 body::after {
@@ -97,7 +128,7 @@ body::after {
   position: fixed;
   inset: 0px;
   background-image: url("../../public/beautiful-low-angle-photo-frauenkirche-lutheran-church-dresden-germany-night-sky.jpg");
-  background-size: cover; /* змінив на cover, оскільки background-size: 100%; може призводити до неправильного масштабування */
+  background-size: cover;
   background-position: bottom center;
   filter: blur(1px);
   z-index: -1;
